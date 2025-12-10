@@ -2,842 +2,271 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Portfolio – Landing Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brian Tapia – Portfolio</title>
+
   <style>
     :root {
       --bg: #050816;
-      --bg-alt: #0b1020;
-      --accent: #4f46e5;
-      --accent-soft: rgba(79, 70, 229, 0.2);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --card-bg: #0b1220;
-      --radius-xl: 18px;
+      --card: #0b1120;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #6366f1;
+      --accent2: #38bdf8;
+      --radius-xl: 22px;
       --radius-full: 999px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
       color: var(--text);
-      line-height: 1.5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 60px;
     }
+    a { color: inherit; text-decoration: none; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 16px 64px;
-    }
-
-    /* NAVBAR */
-    .nav {
+    /* NAV */
+    header {
+      width: 100%;
+      padding: 18px 22px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
-      border-radius: var(--radius-xl);
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      backdrop-filter: blur(20px);
+      align-items: center;
       position: sticky;
-      top: 12px;
-      z-index: 20;
+      top: 0;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(148,163,184,0.2);
+      z-index: 50;
     }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-badge {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at 30% 0, #818cf8, #4f46e5 55%, #0b1120 100%);
+    .nav-title {
       font-size: 18px;
-      font-weight: 700;
-      box-shadow: 0 0 18px rgba(129, 140, 248, 0.6);
-    }
-
-    .logo-text {
       font-weight: 600;
-      letter-spacing: 0.02em;
-      font-size: 15px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn {
-      font-size: 13px;
-      padding: 8px 14px;
-      border-radius: var(--radius-full);
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: transparent;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-    }
-
-    .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    .btn-ghost:hover {
-      border-color: rgba(148, 163, 184, 0.9);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      border-color: transparent;
-      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.55);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 35px rgba(79, 70, 229, 0.75);
-    }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-      gap: 32px;
-      align-items: center;
-      margin-top: 36px;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: var(--radius-full);
-      padding: 4px 10px;
-      font-size: 11px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.85);
-      margin-bottom: 16px;
-    }
-
-    .hero-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
-    }
-
-    .hero-title {
-      font-size: clamp(32px, 4vw, 42px);
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .hero-gradient {
-      background: linear-gradient(120deg, #e5e7eb, #a5b4fc, #38bdf8);
+      background: linear-gradient(120deg, #e5e7eb, #94a3f8, #38bdf8);
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
     }
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+    }
+    nav a:hover { color: var(--accent2); }
 
-    .hero-subtitle {
-      font-size: 15px;
+    /* SECTIONS */
+    section {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 64px 20px;
+    }
+    h1, h2 { font-weight: 800; letter-spacing: 0.01em; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    .sub {
       color: var(--muted);
-      max-width: 420px;
-      margin-bottom: 20px;
+      max-width: 540px;
+      margin-bottom: 24px;
     }
 
-    .hero-input-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
+    /* HERO / ABOUT */
+    .hero {
+      padding-top: 80px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 52px);
+      line-height: 1.15;
       margin-bottom: 12px;
+      background: linear-gradient(120deg, #f1f5f9, #94a3f8, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
     }
-
-    .hero-input-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+    .hero-img {
+      margin: 24px auto 0;
+      width: 130px;
+      height: 130px;
       border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.95);
-      font-size: 13px;
-      color: var(--muted);
-      min-width: 210px;
+      background: linear-gradient(145deg, #6366f1, #38bdf8);
+      padding: 4px;
+      box-shadow: var(--shadow);
     }
-
-    .hero-input-pill span:nth-child(1) {
-      color: rgba(148, 163, 184, 0.7);
-    }
-
-    .hero-input-pill span:nth-child(3) {
-      color: rgba(148, 163, 184, 0.5);
-      font-size: 12px;
-    }
-
-    .hero-footnote {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    /* HERO RIGHT - “CHAT” PANEL */
-    .hero-panel {
-      border-radius: 24px;
-      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.35), #020617 55%);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 16px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .hero-panel-avatar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .avatar-circle {
-      width: 34px;
-      height: 34px;
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: var(--radius-full);
-      border: 2px solid rgba(129, 140, 248, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      background: radial-gradient(circle at 30% 0, #4ade80, #22c55e 45%, #0f172a);
     }
 
-    .avatar-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .avatar-name {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .avatar-role {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .dot-row {
-      display: flex;
-      gap: 4px;
-    }
-
-    .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.6);
-    }
-
-    .hero-panel-main {
-      margin-top: 8px;
+    /* CARD GRID */
+    .grid {
       display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 26px;
     }
 
-    .persona-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 11px;
-    }
-
-    .persona-pill {
-      padding: 8px 9px;
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148,163,184,0.25);
+      padding: 20px;
       border-radius: var(--radius-xl);
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, border 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
     }
 
-    .persona-pill strong {
-      display: block;
-      font-size: 11px;
-      margin-bottom: 2px;
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
-
-    .persona-pill span {
-      color: var(--muted);
-    }
-
-    .persona-pill.active {
-      border-color: rgba(129, 140, 248, 0.9);
-      background: rgba(49, 46, 129, 0.85);
-    }
-
-    .chat-window {
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 10px;
-      font-size: 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 140px;
-    }
-
-    .chat-bubble {
-      padding: 7px 9px;
-      border-radius: 12px;
-      max-width: 100%;
-    }
-
-    .chat-user {
-      align-self: flex-start;
-      border-radius: 12px 12px 12px 4px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-    }
-
-    .chat-ai {
-      align-self: flex-end;
-      border-radius: 12px 12px 4px 12px;
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.95), rgba(56, 189, 248, 0.9));
-      color: #e5e7eb;
-    }
-
-    .chat-input {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.85);
-      border-radius: 999px;
-      padding: 6px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .chat-input-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    /* STEPS SECTION */
-    .section {
-      margin-top: 56px;
-    }
-
-    .section-heading {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .section-sub {
+    .card-sub {
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 18px;
     }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+    .card img {
+      width: 100%;
+      height: 150px;
+      border-radius: var(--radius-xl);
+      object-fit: cover;
+      margin-bottom: 14px;
     }
 
-    .step-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .step-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
-    }
-
-    .step-title {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .step-body {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* COMPARISON SECTION */
-    .compare-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-
-    .compare-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    .compare-badge {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .compare-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .compare-list {
-      list-style: none;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .compare-list li {
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bullet-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.7);
-    }
-
-    .bullet-dot.good {
-      background: #22c55e;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .testimonial-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    .testimonial-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .testimonial-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #4f46e5 60%, #020617);
-    }
-
-    .testimonial-name {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .testimonial-handle {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .testimonial-text {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* FAQ */
-    .faq-list {
-      margin-top: 10px;
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: var(--card-bg);
-      overflow: hidden;
-    }
-
-    .faq-item {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
-      font-size: 13px;
-    }
-
-    .faq-item:last-child {
-      border-bottom: none;
-    }
-
-    .faq-q {
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .faq-a {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 40px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
+    /* SKILLS */
+    .skills-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--muted);
+      gap: 10px;
+      margin-top: 14px;
     }
 
-    footer a {
-      color: var(--muted);
-    }
-
-    footer a:hover {
+    .skill {
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(148,163,184,0.25);
+      font-size: 13px;
       color: var(--text);
     }
 
-    @media (max-width: 768px) {
-      .nav {
-        border-radius: 14px;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-panel {
-        order: -1;
-      }
-
-      .nav-links {
-        display: none;
-      }
+    /* CONTACT */
+    .contact-box {
+      background: var(--card);
+      border: 1px solid rgba(148,163,184,0.25);
+      padding: 20px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 420px;
+      margin: 32px auto 0;
+    }
+    .contact-box a {
+      color: var(--accent2);
+      font-weight: 600;
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <!-- NAVBAR -->
-    <header class="nav">
-      <div class="nav-left">
-        <div class="logo-badge">A</div>
-        <div class="logo-text">AI Portfolio</div>
-      </div>
-      <nav class="nav-links">
-        <a href="#portfolio">Portfolio</a>
-        <a href="#steps">How it works</a>
-        <a href="#pricing">Pricing</a>
-      </nav>
-      <div class="nav-right">
-        <button class="btn btn-ghost">Sign in</button>
-        <button class="btn btn-primary">Get started</button>
-      </div>
-    </header>
+  <!-- NAV -->
+  <header>
+    <div class="nav-title">Brian Tapia</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          <span>Personal AI on your domain</span>
-        </div>
-        <h1 class="hero-title">
-          Let visitors talk<br />
-          to your <span class="hero-gradient">AI twin</span>
-        </h1>
-        <p class="hero-subtitle">
-          Turn your CV, LinkedIn and projects into an interactive portfolio that answers questions 24/7 – so you don’t have to.
-        </p>
+  <!-- ABOUT / HERO -->
+  <section id="about" class="hero">
+    <div class="hero-img">
+      <!-- replace with your picture -->
+      <img src="https://via.placeholder.com/150" alt="Profile photo">
+    </div>
 
-        <div class="hero-input-row">
-          <div class="hero-input-pill">
-            <span>you.dev/</span>
-            <span>your-name</span>
-            <span>↵</span>
-          </div>
-          <button class="btn btn-primary">Create your AI portfolio</button>
-        </div>
-        <p class="hero-footnote">No code · 5 minute setup · Shareable link</p>
+    <h1>Hello, I'm Brian</h1>
+    <p>
+      A full-stack developer passionate about building clean, reliable applications.
+      I love working with JavaScript, Python, Node.js, React, APIs & backend logic.
+      Here's everything I’ve built so far.
+    </p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="sub">Some of the things I've built and shipped recently.</p>
+
+    <div class="grid">
+      <!-- PROJECT 1 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/500x300" alt="Project image">
+        <div class="card-title">Rick & Morty API</div>
+        <div class="card-sub">Full MERN backend, custom DAO, routes, controllers.</div>
+        <a href="https://github.com/" target="_blank">View on GitHub →</a>
       </div>
 
-      <!-- HERO RIGHT PANEL -->
-      <aside class="hero-panel">
-        <div class="hero-panel-header">
-          <div class="hero-panel-avatar">
-            <div class="avatar-circle">BT</div>
-            <div class="avatar-info">
-              <span class="avatar-name">Brian’s AI</span>
-              <span class="avatar-role">Full-stack Developer</span>
-            </div>
-          </div>
-          <div class="dot-row">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-
-        <div class="hero-panel-main">
-          <div class="persona-list">
-            <div class="persona-pill active">
-              <strong>Recruiter</strong>
-              <span>“Can you introduce yourself?”</span>
-            </div>
-            <div class="persona-pill">
-              <strong>Tech Lead</strong>
-              <span>“Show me your projects.”</span>
-            </div>
-            <div class="persona-pill">
-              <strong>Client</strong>
-              <span>“How can we work together?”</span>
-            </div>
-            <div class="persona-pill">
-              <strong>HR</strong>
-              <span>“Can I get your resume?”</span>
-            </div>
-          </div>
-
-          <div class="chat-window">
-            <div class="chat-bubble chat-user">
-              I’m a full-stack developer focused on building clean, reliable products. Ask me about any project or experience.
-            </div>
-            <div class="chat-bubble chat-ai">
-              I’ve summarised Brian’s experience from his resume, GitHub and LinkedIn so I can answer specific questions instantly.
-            </div>
-            <div class="chat-input">
-              <div class="chat-input-dot"></div>
-              <span>Ask about projects, tech stack, experience…</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- STEPS -->
-    <section id="steps" class="section">
-      <h2 class="section-heading">3 steps to your AI portfolio</h2>
-      <p class="section-sub">Go from static resume to interactive, AI-powered profile in minutes.</p>
-
-      <div class="steps-grid">
-        <article class="step-card">
-          <div class="step-label">Step 1</div>
-          <div class="step-title">Import your content</div>
-          <p class="step-body">
-            Connect your LinkedIn, upload your resume, and optionally link GitHub or a portfolio. We only use it to train your personal AI.
-          </p>
-        </article>
-        <article class="step-card">
-          <div class="step-label">Step 2</div>
-          <div class="step-title">AI learns your story</div>
-          <p class="step-body">
-            We extract your roles, skills, projects and achievements so the AI can answer questions with concrete examples and metrics.
-          </p>
-        </article>
-        <article class="step-card">
-          <div class="step-label">Step 3</div>
-          <div class="step-title">Share your link</div>
-          <p class="step-body">
-            Get a custom URL you can put on your resume, LinkedIn, email signature or portfolio and let people chat with your AI twin.
-          </p>
-        </article>
+      <!-- PROJECT 2 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/500x300" alt="Project image">
+        <div class="card-title">ThinkBoard App</div>
+        <div class="card-sub">Full-stack notes app with authentication & database.</div>
+        <a href="https://github.com/" target="_blank">View on GitHub →</a>
       </div>
-    </section>
 
-    <!-- COMPARISON -->
-    <section class="section">
-      <h2 class="section-heading">Be more than just a PDF</h2>
-      <p class="section-sub">Give people a way to explore your experience instead of skimming and forgetting.</p>
-
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-badge">Traditional</div>
-          <h3 class="compare-title">Static resume</h3>
-          <ul class="compare-list">
-            <li><span class="bullet-dot"></span><span>Gets a few seconds of attention</span></li>
-            <li><span class="bullet-dot"></span><span>Same version for everyone</span></li>
-            <li><span class="bullet-dot"></span><span>No way to ask follow-up questions</span></li>
-            <li><span class="bullet-dot"></span><span>Forgotten as soon as the tab closes</span></li>
-          </ul>
-        </article>
-        <article class="compare-card">
-          <div class="compare-badge">Now</div>
-          <h3 class="compare-title">AI-powered portfolio</h3>
-          <ul class="compare-list">
-            <li><span class="bullet-dot good"></span><span>Adapts answers to each visitor</span></li>
-            <li><span class="bullet-dot good"></span><span>Available 24/7 on your own link</span></li>
-            <li><span class="bullet-dot good"></span><span>Can reference real projects and metrics</span></li>
-            <li><span class="bullet-dot good"></span><span>Makes you memorable and easy to share</span></li>
-          </ul>
-        </article>
+      <!-- PROJECT 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/500x300" alt="Project image">
+        <div class="card-title">Piano Simulator</div>
+        <div class="card-sub">Python project teaching logic, functions & fun outputs.</div>
+        <a href="https://github.com/" target="_blank">View on GitHub →</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <h2 class="section-heading">Loved by job-seekers & freelancers</h2>
-      <p class="section-sub">Professionals use their AI portfolio to handle intros, FAQs and project questions automatically.</p>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="sub">Technologies I've worked with.</p>
 
-      <div class="testimonials-grid">
-        <article class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">EM</div>
-            <div>
-              <div class="testimonial-name">Emma Johnson</div>
-              <div class="testimonial-handle">@emma.dev</div>
-            </div>
-          </div>
-          <p class="testimonial-text">
-            “My AI portfolio answers the questions I usually get on intro calls. Recruiters arrive already knowing who I am.”
-          </p>
-        </article>
-        <article class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">DP</div>
-            <div>
-              <div class="testimonial-name">David Park</div>
-              <div class="testimonial-handle">@davidcodes</div>
-            </div>
-          </div>
-          <p class="testimonial-text">
-            “It took me less than 10 minutes to set up. Now I just send one link instead of tailoring a new blurb every time.”
-          </p>
-        </article>
-        <article class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">SR</div>
-            <div>
-              <div class="testimonial-name">Sofia Ramos</div>
-              <div class="testimonial-handle">@sofialabs</div>
-            </div>
-          </div>
-          <p class="testimonial-text">
-            “Clients love that they can ask very specific questions about my stack and previous projects and get instant answers.”
-          </p>
-        </article>
-      </div>
-    </section>
+    <div class="skills-list">
+      <div class="skill">JavaScript</div>
+      <div class="skill">TypeScript</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Express.js</div>
+      <div class="skill">React</div>
+      <div class="skill">MongoDB</div>
+      <div class="skill">Python</div>
+      <div class="skill">APIs</div>
+      <div class="skill">Git / GitHub</div>
+      <div class="skill">HTML / CSS</div>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section class="section" id="pricing">
-      <h2 class="section-heading">Frequently asked questions</h2>
-      <p class="section-sub">Everything you need to know before you share your AI link.</p>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="sub">Want to reach out? I'm always open to opportunities.</p>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q">What exactly is an AI portfolio?</div>
-          <div class="faq-a">
-            It’s a small site where people can ask questions about your experience, projects and skills. The AI is trained only on the content you provide.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Do I need to know how to code?</div>
-          <div class="faq-a">
-            No. You just upload your existing material and we generate the rest. You can customise the look and copy later if you want.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Is there a free plan?</div>
-          <div class="faq-a">
-            You can start with a free version to test the experience. Upgrade when you want your own domain, branding and higher limits.
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">How long does setup take?</div>
-          <div class="faq-a">
-            Most people create a shareable link in under 5 minutes. The slowest part is usually finding your PDF resume.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <span>© 2025 AI Portfolio. All rights reserved.</span>
-      <span>
-        <a href="#portfolio">Portfolio</a> ·
-        <a href="#steps">How it works</a> ·
-        <a href="#pricing">Pricing</a>
-      </span>
-    </footer>
-  </div>
+    <div class="contact-box">
+      <p>Email me at:</p>
+      <a href="mailto:brian@example.com">brian@example.com</a>
+    </div>
+  </section>
 </body>
 </html>
